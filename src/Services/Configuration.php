@@ -82,16 +82,22 @@ class Configuration
      * @param string $link
      * @return string
      */
-    public function getPreviewLink(string $token, string $link): string
+    public function getPreviewLink(string $token, string $link, bool $isLive): string
     {
-        return sprintf(
-            '%s/%s?token=%s&slug=%s',
-            $this->getBaseURL(),
-            $this->getPreviewEndpoint(),
-            $token,
-            $link
-        );
-
+        if($isLive){
+            return sprintf(
+                '%s%s',
+                $this->getBaseURL(),
+                $link
+            );
+        }else{
+            return sprintf(
+                '%s/%s?token=%s&slug=%s',
+                $this->getBaseURL(),
+                $this->getPreviewEndpoint(),
+                $token,
+                $link
+            );
+        }
     }
-
 }

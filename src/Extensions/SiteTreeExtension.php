@@ -29,7 +29,8 @@ class SiteTreeExtension extends DataExtension
         $factory = PreviewTokenFactory::create($previewKey);
         $link = $config->getPreviewLink(
             $factory->createToken($this->owner),
-            $relative
+            $relative,
+            str_contains($link, 'stage=Live')
         );
     }
 
