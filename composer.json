@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "silverstripe/silverstripe-headless": "dev-main",
+    "silverstripe/silverstripe-headless": "dev-beta",
     "symbiote/silverstripe-gridfieldextensions": "^3.2"
   },
   "autoload": {
