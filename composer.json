@@ -15,7 +15,7 @@
   ],
   "require": {
     "silverstripe/silverstripe-headless": "dev-main",
-    "symbiote/silverstripe-gridfieldextensions": "^3.2"
+    "symbiote/silverstripe-gridfieldextensions": "^4.0.5"
   },
   "autoload": {
     "psr-4": {
