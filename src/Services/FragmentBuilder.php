@@ -8,7 +8,7 @@ use GraphQL\Type\Definition\EnumType;
 use GraphQL\Type\Definition\InterfaceType;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
-use GraphQL\Type\Definition\TypeWithFields;
+// use GraphQL\Type\Definition\TypeWithFields;
 use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\GraphQL\Schema\DataObject\InterfaceBuilder;
 use SilverStripe\GraphQL\Schema\Exception\SchemaBuilderException;
@@ -91,12 +91,12 @@ class FragmentBuilder
     }
 
     /**
-     * @param TypeWithFields $type
+     * @param $type
      * @param int $level
      * @return array|string[]
      * @throws SchemaBuilderException
      */
-    private function getFieldsForType(TypeWithFields $type, int $level = 1): array
+    private function getFieldsForType($type, int $level = 1): array
     {
         $interfaceName = $type instanceof InterfaceType
             ? $type->name
@@ -137,16 +137,25 @@ class FragmentBuilder
             }
             $nestedTypeObj = Type::getNamedType($field->getType());
 
-            if (Type::isBuiltInType($nestedTypeObj)) {
-                $result[$field->name] = true;
-                continue;
-            }
-            if($nestedTypeObj instanceof TypeWithFields) {
-                $result[$field->name] = [
-                    '__typename ## add your fields below' => true
-                ];
-                continue;
-            }
+            /** START ::  NEED TO BE CHECKED after SS5 UPGARDE */
+            /**
+             * this line is disable
+             * because isBuiltInType and TypeWithFields is not available
+             * on the latest version of the related modules
+             */
+            // if (Type::isBuiltInType($nestedTypeObj)) {
+            //     $result[$field->name] = true;
+            //     continue;
+            // }
+
+            // if($nestedTypeObj instanceof TypeWithFields) {
+            //     $result[$field->name] = [
+            //         '__typename ## add your fields below' => true
+            //     ];
+            //     continue;
+            // }
+            /** END ::  NEED TO BE CHECKED after SS5 UPGARDE */
+            
             if ($nestedTypeObj instanceof EnumType) {
                 $result[$field->name] = true;
                 continue;
