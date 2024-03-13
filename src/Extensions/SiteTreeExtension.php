@@ -30,7 +30,7 @@ class SiteTreeExtension extends DataExtension
         $link = $config->getPreviewLink(
             $factory->createToken($this->owner),
             $relative,
-            str_contains($link, 'stage=Live')
+            false
         );
     }
 
